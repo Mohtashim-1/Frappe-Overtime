@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 class Overtime(Document):
-
-	pass
+    pass
+	
