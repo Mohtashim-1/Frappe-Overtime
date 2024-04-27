@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "color": "green",
  "creation": "2024-04-26 21:05:27.936456",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,10 +9,12 @@
  "engine": "InnoDB",
  "field_order": [
   "posting_date",
+  "get_data",
   "overtime_child"
  ],
  "fields": [
   {
+   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date"
@@ -21,11 +24,16 @@
    "fieldtype": "Table",
    "label": "Overtime Child",
    "options": "Overtime Child"
+  },
+  {
+   "fieldname": "get_data",
+   "fieldtype": "Button",
+   "label": "Get Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-26 21:05:27.936456",
+ "modified": "2024-04-27 12:09:04.898663",
  "modified_by": "Administrator",
  "module": "Overtime",
  "name": "Overtime",
@@ -44,9 +52,11 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "posting_date",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1
