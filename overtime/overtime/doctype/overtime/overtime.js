@@ -3,51 +3,49 @@
 
 frappe.ui.form.on('Overtime', {
 	refresh: function (frm) {
-		let attendanceData = getAttendanceData({ date: frm.doc.posting_date }); // Assuming posting_date is a field name
+		console.log("Fetching attendance data...");
+		let attendanceData = getAttendanceData({ date: frm.doc.posting_date });
 
-		let filteredData = [];
-		let standardWorkingHours = 8; // Adjust this value as needed
-
-		// Filter based on working hours exceeding standard
-		for (let record of attendanceData) {
-			if (record.worked_hours > standardWorkingHours) {
-				filteredData.push(record);
+		// Check if child table population is required (optional)
+		if (shouldPopulateChildTable(frm)) {
+			console.log("Populating child table...");
+			for (let record of attendanceData) {
+				addChildRow(record);
 			}
-		}
-
-		// OR (Uncomment if using an overtime_approved field)
-		// for (let record of attendanceData) {
-		//   if (record.overtime_approved) { // Replace 'overtime_approved' with the actual field name
-		//     filteredData.push(record);
-		//   }
-		// }
-
-		// Replace 'addChildRow' with the actual function in your platform
-		for (let record of filteredData) {
-			addChildRow(
-				{
-					employee: record.employee,
-					// Replace with appropriate field names
-					attendanceDate: record.attendance_date,
-					checkIn: record.in_time,
-					checkOut: record.out_time,
-					// Add more fields as needed
-				}
-			);
+			frm.refresh_field('overtime_child');
 		}
 	}
 });
 
-// **Assuming these functions are defined elsewhere in your platform**
+// Assuming this function exists in your platform
 function getAttendanceData(filters) {
-	// Replace with the actual logic to fetch attendance data based on filters (likely date)
-	// This function should return an array of attendance records
-	console.error("getAttendanceData function not implemented!");
-	return [];
+	console.log("Getting attendance data for:", filters.date);
+	let attendanceData = frappe.get_list("Attendance", {
+		filters: {
+			attendance_date: filters.date // Replace with the actual date field name
+		}
+	});
+	return attendanceData;
 }
 
+// Function to determine if child table needs population (optional)
+function shouldPopulateChildTable(frm) {
+	// Implement logic to check if child table population is necessary
+	// This could involve checking a checkbox field or other criteria
+	// Return true if population is needed, false otherwise
+	return true; // Replace with your logic
+}
+
+// Replace with the actual function for adding rows to the child table
 function addChildRow(data) {
-	// Replace with the actual function to add a row to the child table in your platform
-	// This function should accept an object with data for the new child row
-	console.error("addChildRow function not implemented!");
+	console.log("Adding row for employee:", data.employee); // Assuming 'employee' field stores employee link
+	let newRow = frappe.ui.add_child('Overtime Child', frm.doc); // Replace with actual function
+	try {
+		newRow.attendance_record = data.name; // Assuming 'name' is the attendance record ID
+		newRow.employee_id = data.employee; // Assuming 'employee' field stores employee link
+		newRow.name1 = data.employee_name; // Assuming 'employee_name' stores employee name
+		// ... (set other field values based on data)
+	} catch (error) {
+		console.error("Error adding row:", error);
+	}
 }
