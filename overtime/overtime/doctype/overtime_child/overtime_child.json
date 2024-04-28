@@ -71,7 +71,7 @@
   },
   {
    "fieldname": "extra_hours_and_minutes",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "in_standard_filter": 1,
    "label": "Extra Hours and Minutes",
    "reqd": 1
@@ -94,7 +94,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-28 17:40:51.770929",
+ "modified": "2024-04-28 19:14:29.378245",
  "modified_by": "Administrator",
  "module": "Overtime",
  "name": "Overtime Child",

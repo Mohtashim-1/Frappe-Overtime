@@ -3,52 +3,33 @@
 
 frappe.ui.form.on('Overtime', {
 	refresh: function (frm) {
-		// 		console.log("Fetching attendance data...");
-		// 		let attendanceData = getAttendanceData({ date: frm.doc.posting_date });
+		// console.log(frm)
+		// var doc = frm
 
-		// 		// Check if child table population is required (optional)
-		// 		if (shouldPopulateChildTable(frm)) {
-		// 			console.log("Populating child table...");
-		// 			for (let record of attendanceData) {
-		// 				addChildRow(record);
-		// 			}
-		// 			frm.refresh_field('overtime_child');
-		// 		}
-		// 	}
-		// });
-
-		// // Assuming this function exists in your platform
-		// function getAttendanceData(filters) {
-		// 	console.log("Getting attendance data for:", filters.date);
-		// 	let attendanceData = frappe.get_list("Attendance", {
-		// 		filters: {
-		// 			attendance_date: filters.date // Replace with the actual date field name
-		// 		}
-
-		// 	});
-		// 	console.log('testing')
-		// 	return attendanceData;
-		// }
-
-		// // Function to determine if child table needs population (optional)
-		// function shouldPopulateChildTable(frm) {
-		// 	// Implement logic to check if child table population is necessary
-		// 	// This could involve checking a checkbox field or other criteria
-		// 	// Return true if population is needed, false otherwise
-		// 	return true; // Replace with your logic
-		// }
-
-		// // Replace with the actual function for adding rows to the child table
-		// function addChildRow(data) {
-		// 	console.log("Adding row for employee:", data.employee); // Assuming 'employee' field stores employee link
-		// 	let newRow = frappe.ui.add_child('Overtime Child', frm.doc); // Replace with actual function
-		// 	try {
-		// 		newRow.attendance_record = data.name; // Assuming 'name' is the attendance record ID
-		// 		newRow.employee_id = data.employee; // Assuming 'employee' field stores employee link
-		// 		newRow.name1 = data.employee_name; // Assuming 'employee_name' stores employee name
-		// 		// ... (set other field values based on data)
-		// 	} catch (error) {
-		// 		console.error("Error adding row:", error);
 	}
 }
 )
+
+// frappe.ui.form.on('Overtime Child', {
+// 	check_out: function (frm, cdt, cdn) {
+// 		calculateOvertime(frm, cdt, cdn);
+// 	},
+// 	check_in: function (frm, cdt, cdn) {
+// 		calculateOvertime(frm, cdt, cdn);
+// 	}
+// });
+
+// function calculateOvertime(frm, cdt, cdn) {
+// 	var doc = frappe.get_doc(cdt, cdn);
+// 	var check_in = doc.check_in;
+// 	var check_out = doc.check_out;
+
+// 	// Calculate the difference in milliseconds
+// 	var timeDiff = check_out - check_in;
+
+// 	// Convert milliseconds to hours
+// 	var hours = timeDiff / (1000 * 3600);
+
+// 	// Set the value of overtime_hours in the current Overtime Child record
+// 	frappe.model.set_value(cdt, cdn, 'overtime_hours', hours);
+// }

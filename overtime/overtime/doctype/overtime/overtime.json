@@ -14,7 +14,6 @@
  ],
  "fields": [
   {
-   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date"
@@ -33,7 +32,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-27 12:09:04.898663",
+ "modified": "2024-04-28 19:44:32.730179",
  "modified_by": "Administrator",
  "module": "Overtime",
  "name": "Overtime",
