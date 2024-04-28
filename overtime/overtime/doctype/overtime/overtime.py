@@ -12,7 +12,7 @@ class Overtime(Document):
         d= frappe.db.get_all('Attendance', filters={
             'attendance_date':self.posting_date
         }, fields=[
-
+            'employee', 'in_time', 'out_time'
         ])
         # d = frappe.get_all("Attendance", filters={'attendance_date': self.posting_date}, fields=['employee', 'in_time', 'out_time'])
         self.overtime_hours = 10
