@@ -2,34 +2,17 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Overtime', {
-	refresh: function (frm) {
-		// console.log(frm)
-		// var doc = frm
+	attendance_record: function (frm) {
+		console.log(frm);
+		var data = frm.doc;
+		var standard_hours = data.standard_hours;
+		var working_hours = data.working_hours;
 
+		// Calculate overtime hours
+		var ot_hours = working_hours - standard_hours;
+		console.log(ot_hours);
+
+		// Set the value of the 'overtime_hours' field
+		frm.set_value('ot_hours', ot_hours);
 	}
-}
-)
-
-// frappe.ui.form.on('Overtime Child', {
-// 	check_out: function (frm, cdt, cdn) {
-// 		calculateOvertime(frm, cdt, cdn);
-// 	},
-// 	check_in: function (frm, cdt, cdn) {
-// 		calculateOvertime(frm, cdt, cdn);
-// 	}
-// });
-
-// function calculateOvertime(frm, cdt, cdn) {
-// 	var doc = frappe.get_doc(cdt, cdn);
-// 	var check_in = doc.check_in;
-// 	var check_out = doc.check_out;
-
-// 	// Calculate the difference in milliseconds
-// 	var timeDiff = check_out - check_in;
-
-// 	// Convert milliseconds to hours
-// 	var hours = timeDiff / (1000 * 3600);
-
-// 	// Set the value of overtime_hours in the current Overtime Child record
-// 	frappe.model.set_value(cdt, cdn, 'overtime_hours', hours);
-// }
+});
