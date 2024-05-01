@@ -21,7 +21,8 @@
   "in_time",
   "out_time",
   "amended_from",
-  "ot_hours"
+  "ot_hours",
+  "standard_hours"
  ],
  "fields": [
   {
@@ -104,11 +105,17 @@
   {
    "fieldname": "column_break_6phkj",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "8",
+   "fieldname": "standard_hours",
+   "fieldtype": "Data",
+   "label": "Standard Hours"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-02 00:21:49.013704",
+ "modified": "2024-05-02 00:29:02.235170",
  "modified_by": "Administrator",
  "module": "Overtime",
  "name": "Overtime",

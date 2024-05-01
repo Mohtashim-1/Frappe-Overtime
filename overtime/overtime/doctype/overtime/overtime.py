@@ -2,19 +2,17 @@ import frappe
 from frappe.model.document import Document
 
 class Overtime(Document):
-    def validate(self):
-        if not self.get('posting_date'):
-            self.posting_date = "2024-06-09"
-            frappe.msgprint('1')
-        self.get_attendance()
+    def before_save(self):
+        frappe.msgprint('Message')
+        
+        self.ot_hours_calculation()
 
-    def get_attendance(self):
-        d= frappe.db.get_all('Attendance', filters={
-            'attendance_date':self.posting_date
-        }, fields=[
-            'employee', 'in_time', 'out_time'
-        ])
-        # d = frappe.get_all("Attendance", filters={'attendance_date': self.posting_date}, fields=['employee', 'in_time', 'out_time'])
-        self.overtime_hours = 10
-        frappe.msgprint('1')
-        frappe.msgprint(d)
+
+    def ot_hours_calculation(self):
+        # Calculate overtime hours
+        self.overtime_hours = self.working_hours - self.standard_hours
+        # Save the document 
+        self.save()
+
+        # Optionally, you can also display a message to the user
+        frappe.msgprint(f"Overtime hours calculated: {self.overtime_hours}")
