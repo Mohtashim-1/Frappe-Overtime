@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:OT-{####}",
  "color": "green",
  "creation": "2024-04-26 21:05:27.936456",
  "default_view": "List",
@@ -9,33 +10,109 @@
  "engine": "InnoDB",
  "field_order": [
   "posting_date",
-  "get_data",
-  "overtime_child"
+  "attendance_record",
+  "employee",
+  "employee_name",
+  "working_hours",
+  "attendance_date",
+  "column_break_6phkj",
+  "status",
+  "shift",
+  "in_time",
+  "out_time",
+  "amended_from",
+  "ot_hours"
  ],
  "fields": [
   {
+   "default": "Now",
    "fieldname": "posting_date",
-   "fieldtype": "Date",
+   "fieldtype": "Datetime",
    "label": "Posting Date"
   },
   {
-   "fieldname": "overtime_child",
-   "fieldtype": "Table",
-   "label": "Overtime Child",
-   "options": "Overtime Child"
+   "fetch_from": "attendance_record.employee",
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "label": "Employee"
   },
   {
-   "fieldname": "get_data",
-   "fieldtype": "Button",
-   "label": "Get Data"
+   "fetch_from": "attendance_record.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "attendance_record.working_hours",
+   "fieldname": "working_hours",
+   "fieldtype": "Data",
+   "label": "Working Hours"
+  },
+  {
+   "fetch_from": "attendance_record.attendance_date",
+   "fieldname": "attendance_date",
+   "fieldtype": "Data",
+   "label": "Attendance Date"
+  },
+  {
+   "fetch_from": "attendance_record.status",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fetch_from": "attendance_record.shift",
+   "fieldname": "shift",
+   "fieldtype": "Data",
+   "label": "Shift"
+  },
+  {
+   "fetch_from": "attendance_record.in_time",
+   "fieldname": "in_time",
+   "fieldtype": "Data",
+   "label": "In Time"
+  },
+  {
+   "fetch_from": "attendance_record.out_time",
+   "fieldname": "out_time",
+   "fieldtype": "Data",
+   "label": "Out Time"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Overtime",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "attendance_record",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Attendance Record",
+   "options": "Attendance",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ot_hours",
+   "fieldtype": "Data",
+   "label": "OT Hours"
+  },
+  {
+   "fieldname": "column_break_6phkj",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-28 19:44:32.730179",
+ "modified": "2024-05-02 00:21:49.013704",
  "modified_by": "Administrator",
  "module": "Overtime",
  "name": "Overtime",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -54,8 +131,17 @@
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "title_field": "posting_date",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Draft"
+  },
+  {
+   "color": "Yellow",
+   "title": "Submitted"
+  }
+ ],
+ "title_field": "employee",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1
