@@ -2,21 +2,19 @@ import frappe
 from frappe.model.document import Document
 
 class Overtime(Document):
+
     def before_save(self):
-        ctc = frappe.get_all('Employee',filters={'employee':self.employee},fields=['employee','ctc'])
-        frappe.msgprint('Message')
-        
+        self.salary()
+        self.overtime_hour_calculation()
 
-    #     frappe.msgprint('Message')
-        
-    #     self.ot_hours_calculation()
+    
+    def salary(self): 
+        frappe.msgprint("testing...")
+        self.per_hour_salary = float(self.ctc / 30 / 9)
+        frappe.errprint(self.per_hour_salary)
 
-
-    # def ot_hours_calculation(self):
-    #     # Calculate overtime hours
-    #     self.overtime_hours = self.working_hours - self.standard_hours
-    #     # Save the document 
-    #     self.save()
-
-    #     # Optionally, you can also display a message to the user
-    #     frappe.msgprint(f"Overtime hours calculated: {self.overtime_hours}")
+    def overtime_hour_calculation(self):
+        if(self.working_hours > 9 ):
+            self.overtime_hour - self.working_hours
+        else:
+            self.overtime_hour = 0        

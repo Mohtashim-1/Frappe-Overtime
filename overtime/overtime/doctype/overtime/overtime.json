@@ -111,6 +111,16 @@
    "fieldname": "standard_hours",
    "fieldtype": "Data",
    "label": "Standard Hours"
+  },
+  {
+   "fieldname": "per_hour_salary",
+   "fieldtype": "Float",
+   "label": "Per Hour Salary"
+  },
+  {
+   "fieldname": "overtime_hour",
+   "fieldtype": "Data",
+   "label": "Overtime Hour"
   }
  ],
  "index_web_pages_for_search": 1,
